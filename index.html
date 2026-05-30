@@ -644,25 +644,40 @@ button, input, select, textarea {
 .field select option { background:var(--v-deep); color:var(--beige-l); }
 .field textarea { resize:vertical; min-height:90px; }
 
-.check-group {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:.6rem;
-  margin-top:.5rem;
+.chip-group {
+  display:flex;
+  flex-wrap:wrap;
+  gap:.55rem;
+  margin-top:.6rem;
 }
-.check-item {
-  display:flex; align-items:flex-start; gap:.6rem;
-  font-size:.82rem;
-  color:rgba(232,220,200,.7);
+.chip {
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+  padding:.5rem .9rem;
+  border-radius:99px;
+  border:1.5px solid rgba(181,113,42,.3);
+  background:rgba(255,255,255,.04);
+  color:rgba(232,220,200,.6);
+  font-size:.78rem;
   cursor:pointer;
-  line-height:1.4;
+  user-select:none;
+  -webkit-user-select:none;
+  transition:background .2s, border-color .2s, color .2s;
+  -webkit-tap-highlight-color:transparent;
 }
-.check-item input[type=checkbox] {
-  width:17px; height:17px; margin-top:.05rem;
-  accent-color:var(--copper);
-  flex-shrink:0; padding:0; border:none;
-  background:transparent; cursor:pointer;
+.chip.active {
+  background:rgba(181,113,42,.18);
+  border-color:var(--copper);
+  color:var(--copper-l);
 }
+.chip-check {
+  font-size:.7rem;
+  opacity:0;
+  transition:opacity .15s;
+  line-height:1;
+}
+.chip.active .chip-check { opacity:1; }
 .form-divider {
   height:1px;
   background:rgba(181,113,42,.15);
@@ -1239,13 +1254,7 @@ button, input, select, textarea {
         <p>Especialista en ecología, geología y etnobotánica. Sabe cómo compartir el bosque.</p>
       </div>
     </div>
-    <div class="incluye-item">
-      <span class="incluye-icon">🛡️</span>
-      <div class="incluye-text">
-        <h4>Seguro Básico</h4>
-        <p>Cobertura de accidentes durante toda la expedición.</p>
-      </div>
-    </div>
+
     <div class="incluye-item">
       <span class="incluye-icon">🧰</span>
       <div class="incluye-text">
@@ -1312,7 +1321,6 @@ button, input, select, textarea {
         <ul class="precio-features">
           <li>Transporte compartido</li>
           <li>Guía interpretativo</li>
-          <li>Seguro básico</li>
           <li>Snack artesanal grupal</li>
           <li>Fotografía grupal</li>
           <li>Kit naturalista para el menor</li>
@@ -1324,60 +1332,35 @@ button, input, select, textarea {
     <div class="precio-card featured">
       <div class="precio-head">
         <div class="precio-badge">⭐ Recomendado para tu familia</div>
-        <div class="precio-tipo">Expedición Privada</div>
-        <div class="precio-personas">Solo tu grupo · tu ritmo · experiencia exclusiva</div>
+        <div class="precio-tipo">Expedición Premium</div>
+        <div class="precio-personas">Con dron, video aéreo y mapa SIG · Grupo exclusivo</div>
       </div>
       <div class="precio-body">
         <div class="precio-amount">
           <span class="precio-cur" style="color:var(--copper-l)">$</span>
-          <span class="precio-num">3,800</span>
+          <span class="precio-num">5,500</span>
         </div>
         <div class="precio-period">por grupo completo (hasta 5 personas)</div>
         <div class="precio-desglose">
           Para tu grupo de 3:<br>
-          <strong style="color:var(--beige-l)">$3,800 MXN total</strong>
-          <br><em style="font-style:italic">~$1,267 por persona · precio fijo sin importar el número</em>
+          <strong style="color:var(--beige-l)">$5,500 MXN total</strong>
+          <br><em style="font-style:italic">~$1,833 por persona · precio fijo, experiencia única</em>
         </div>
         <ul class="precio-features">
           <li>Transporte privado exclusivo</li>
           <li>Guía solo para tu familia</li>
           <li>Ritmo adaptado al grupo</li>
-          <li>Seguro básico</li>
           <li>Snack premium + café de olla en cima</li>
           <li>Sesión fotográfica completa</li>
           <li>Kit naturalista para el menor</li>
           <li>Temas a medida de sus intereses</li>
-        </ul>
-      </div>
-      <button class="precio-cta-btn" onclick="document.getElementById('reserva').scrollIntoView({behavior:'smooth'})">Reservar experiencia privada</button>
-    </div>
-
-    <div class="precio-card">
-      <div class="precio-head">
-        <div class="precio-badge">Experiencia total</div>
-        <div class="precio-tipo">Expedición Premium</div>
-        <div class="precio-personas">Con dron, video aéreo y mapa SIG</div>
-      </div>
-      <div class="precio-body">
-        <div class="precio-amount">
-          <span class="precio-cur">$</span>
-          <span class="precio-num">5,500</span>
-        </div>
-        <div class="precio-period">por grupo completo (hasta 5 personas)</div>
-        <div class="precio-desglose">
-          Incluye vuelo de dron sobre la sierra<br>
-          y reporte cartográfico personalizado.<br>
-          <em style="font-style:italic">~$1,833 por persona</em>
-        </div>
-        <ul class="precio-features">
-          <li>Todo lo de Privada</li>
-          <li>Vuelo de dron en la sierra</li>
+          <li>Vuelo de dron sobre la sierra</li>
           <li>Video aéreo editado de tu expedición</li>
           <li>Mapa SIG personalizado de la ruta</li>
           <li>Reporte interpretativo digital</li>
         </ul>
       </div>
-      <button class="precio-cta-btn" onclick="document.getElementById('reserva').scrollIntoView({behavior:'smooth'})">Solicitar premium</button>
+      <button class="precio-cta-btn" onclick="document.getElementById('reserva').scrollIntoView({behavior:'smooth'})">Reservar experiencia premium</button>
     </div>
 
   </div>
@@ -1462,24 +1445,27 @@ button, input, select, textarea {
 
       <div class="field">
         <label>Restricciones alimentarias</label>
-        <div class="check-group">
-          <label class="check-item"><input type="checkbox"> Vegano / Vegetariano</label>
-          <label class="check-item"><input type="checkbox"> Sin gluten</label>
-          <label class="check-item"><input type="checkbox"> Sin lácteos</label>
-          <label class="check-item"><input type="checkbox"> Alergia a frutos secos</label>
-          <label class="check-item"><input type="checkbox"> Sin restricciones</label>
+        <div class="chip-group" id="checkAlimentos">
+          <button type="button" class="chip" onclick="toggleChip(this)"><span class="chip-check">✓</span> Vegano / Vegetariano</button>
+          <button type="button" class="chip" onclick="toggleChip(this)"><span class="chip-check">✓</span> Sin gluten</button>
+          <button type="button" class="chip" onclick="toggleChip(this)"><span class="chip-check">✓</span> Sin lácteos</button>
+          <button type="button" class="chip" onclick="toggleChip(this)"><span class="chip-check">✓</span> Alergia a frutos secos</button>
+          <button type="button" class="chip" onclick="toggleChip(this)"><span class="chip-check">✓</span> Sin picante</button>
+          <button type="button" class="chip" onclick="toggleChip(this)"><span class="chip-check">✓</span> Sin restricciones</button>
         </div>
       </div>
 
       <div class="field">
         <label>¿Qué les interesa más?</label>
-        <div class="check-group">
-          <label class="check-item"><input type="checkbox"> Geología y volcanes</label>
-          <label class="check-item"><input type="checkbox"> Fotografía</label>
-          <label class="check-item"><input type="checkbox"> Fauna & aves</label>
-          <label class="check-item"><input type="checkbox"> Historia y cultura</label>
-          <label class="check-item"><input type="checkbox"> Contemplación</label>
-          <label class="check-item"><input type="checkbox"> Experiencia del menor</label>
+        <div class="chip-group" id="checkIntereses">
+          <button type="button" class="chip" onclick="toggleChip(this)"><span class="chip-check">✓</span> Geología y volcanes</button>
+          <button type="button" class="chip" onclick="toggleChip(this)"><span class="chip-check">✓</span> Fotografía</button>
+          <button type="button" class="chip" onclick="toggleChip(this)"><span class="chip-check">✓</span> Fauna y aves</button>
+          <button type="button" class="chip" onclick="toggleChip(this)"><span class="chip-check">✓</span> Historia y cultura</button>
+          <button type="button" class="chip" onclick="toggleChip(this)"><span class="chip-check">✓</span> Contemplación</button>
+          <button type="button" class="chip" onclick="toggleChip(this)"><span class="chip-check">✓</span> Experiencia del menor</button>
+          <button type="button" class="chip" onclick="toggleChip(this)"><span class="chip-check">✓</span> Hongos y musgos</button>
+          <button type="button" class="chip" onclick="toggleChip(this)"><span class="chip-check">✓</span> Historia minera</button>
         </div>
       </div>
 
@@ -1528,10 +1514,24 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: 0.18 });
 items.forEach(el => io.observe(el));
 
-/* Form submit */
+/* Toggle chip selection */
+function toggleChip(el) {
+  el.classList.toggle('active');
+}
+
+/* Form submit → WhatsApp */
 function enviarFormulario() {
-  const nombre = document.getElementById('f-nombre').value.trim();
-  const tel    = document.getElementById('f-tel').value.trim();
+  const nombre    = document.getElementById('f-nombre').value.trim();
+  const tel       = document.getElementById('f-tel').value.trim();
+  const email     = document.getElementById('f-email').value.trim();
+  const fecha     = document.getElementById('f-fecha').value;
+  const condicion = document.getElementById('f-condicion').value;
+  const especial  = document.getElementById('f-especial').value;
+  const menor     = document.getElementById('f-menor').value;
+  const expMenor  = document.getElementById('f-exp-menor').value;
+  const notas     = document.getElementById('f-notas').value.trim();
+
+  // Validación mínima
   if (!nombre) {
     const el = document.getElementById('f-nombre');
     el.style.borderColor = '#b5712a';
@@ -1544,6 +1544,43 @@ function enviarFormulario() {
     el.focus();
     return;
   }
+
+  // Recolectar chips activos de alimentación
+  const alimentos = [...document.querySelectorAll('#checkAlimentos .chip.active')]
+    .map(c => c.textContent.replace('✓', '').trim()).join(', ') || 'Ninguna';
+
+  // Recolectar chips activos de intereses
+  const intereses = [...document.querySelectorAll('#checkIntereses .chip.active')]
+    .map(c => c.textContent.replace('✓', '').trim()).join(', ') || 'No especificado';
+
+  // Armar mensaje WhatsApp
+  const msg = [
+    '🌿 *Nueva solicitud — Nenemi*',
+    '─────────────────────────',
+    `👤 *Nombre:* ${nombre}`,
+    `📱 *WhatsApp:* ${tel}`,
+    email ? `✉️ *Correo:* ${email}` : '',
+    fecha ? `📅 *Fecha preferida:* ${fecha}` : '',
+    '─────────────────────────',
+    `🏃 *Condición física:* ${condicion || 'No indicada'}`,
+    especial && especial !== 'Ninguna' ? `⚠️ *Condición especial:* ${especial}` : '',
+    menor ? `👧 *Edad del menor:* ${menor} años` : '',
+    expMenor ? `🥾 *Exp. del menor:* ${expMenor}` : '',
+    '─────────────────────────',
+    `🍎 *Alimentación:* ${alimentos}`,
+    `🔭 *Intereses:* ${intereses}`,
+    notas ? `📝 *Notas:* ${notas}` : '',
+    '─────────────────────────',
+    '_Enviado desde nenemi.mx_',
+  ].filter(Boolean).join('\n');
+
+  // ⚠️ CAMBIA ESTE NÚMERO por el tuyo (sin espacios, con código de país)
+  const TU_NUMERO = '527771234567';
+
+  const url = `https://wa.me/${TU_NUMERO}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+
+  // Mostrar confirmación
   document.getElementById('formWrap').style.display = 'none';
   const ok = document.getElementById('formOk');
   ok.style.display = 'block';
